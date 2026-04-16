@@ -1,1 +1,16 @@
+import os
+import shutil
 
+path = input("Введите путь к папке для сортировки: ")
+files = os.listdir(path)
+
+for file in files:
+    filename, extension = os.path.splitext(file)
+    extension = extension[1:] # Убираем точку
+
+    if extension:
+        if not os.path.exists(path + '/' + extension):
+            os.makedirs(path + '/' + extension)
+        shutil.move(path + '/' + file, path + '/' + extension + '/' + file)
+
+print("Готово! Все файлы отсортированы.")
